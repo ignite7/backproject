@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>{{title}}</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container py-5" id="result-container-1">
+    <div class="row" id="result-row-1">
+      <div class="col-lg-12 text-center" id="result-col-1">
+        <h3 id="main-text-color" style="color: #3B1A4E;">
+          <i class="fab fa-readme fa-sm"></i> Here are all the details you need.
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="container py-2" id="result-container-2">
+    <div class="row" id="result-row-2">
+      <div class="col-lg-4 mt-2" id="result-col-2">
+        {% include 'ui/items/items_result_col_left.html' %}
+      </div>
+      <dvi class="col-lg-8 mt-2" id="result-col-3">
+        {% include 'ui/items/items_result_col_right.html' %}
+      </dvi>
+    </div>
+  </div>
+  <div class="container py-2" id="result-container-3">
+    <div class="row" id="result-row-3">
+      <div class="col-lg-12" id="result-col-3">
+        {% if 'movieseries' in data %}
+          <p>
+            <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+            data-target=".multi-collapse" aria-expanded="false">
+              Similar movies and series
+            </button>
+          </p>
+          <div class="row">
+            {% for item in data.movieseries %}
+              {% for similar in item.similars %}
+                <div class="col-sm-3 my-1 text-center" id="items-card-col">
+                  <div class="card shadow-sm multi-collapse" id="collapse_movieseries"
+                  style="color: #3B1A4E; border-color: #BC96E6;">
+                    {% if similar.image %}
+                      <img src="{{similar.image}}" class="card-img-top">
+                    {% endif %}
+                    <div class="card-body" id="items-card-body">
+                      <h4 class="card-title" id="items-card-title">{{similar.title}}</h4>
+                      <a href="{% url 'ui:results' 'movieseries' similar.id %}" class="btn btn-info btn-block">
+                        <i class="fas fa-external-link-alt fa-sm"></i> Show more...
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endfor %}
+          </div>
+        {% elif 'games' in data %}
+          <p>
+            <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+            data-target=".multi-collapse" aria-expanded="false">
+              Similar games
+            </button>
+          </p>
+          <div class="row">
+            {% for item in data.games %}
+              {% for similar in item.similar_games %}
+                <div class="col-sm-3 my-1 text-center" id="items-card-col">
+                  <div class="card shadow-sm multi-collapse" id="collapse_movieseries"
+                  style="color: #3B1A4E; border-color: #BC96E6;">
+                    {% if similar.cover.url %}
+                      <img src="{{similar.cover.url}}" class="card-img-top">
+                    {% endif %}
+                    <div class="card-body" id="items-card-body">
+                      <h4 class="card-title" id="items-card-title">{{similar.name}}</h4>
+                      <a href="{% url 'ui:results' 'games' similar.id %}" class="btn btn-info btn-block">
+                        <i class="fas fa-external-link-alt fa-sm"></i> Show more...
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

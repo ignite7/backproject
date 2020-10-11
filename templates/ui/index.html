@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>{{title}}</title>
+{% endblock %}
+
+{% block content %}
+  {% include 'ui/search_bars/search.html' %}
+  {% if data %}
+    {% include 'ui/items/items.html' %}
+  {% endif %}
+  {% include 'ui/introductions/index_introduction.html' %}
+{% endblock %}

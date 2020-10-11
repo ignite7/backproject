@@ -1,0 +1,225 @@
+{% load time_tags %}
+{% if 'movieseries' in data %}
+  {% for item in data.movieseries %}
+    {% if item.id and item.title and item.releaseDate %}
+      <div class="col-lg-auto" id="items-card-col">
+        <div class="card shadow-sm" id="collapse_movieseries"
+        style="color: #3B1A4E; border-color: #BC96E6;">
+          {% if item.image %}
+            <img src="{{item.image}}" class="card-img-top">
+          {% endif %}
+          <div class="card-body text-center" id="items-card-body">
+            <h4 class="card-title" id="items-card-title">{{item.title}}</h4>
+            {% if request.user.is_authenticated %}
+              <form action="{% url 'ui:results' 'movieseries' item.id %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="uuid" value="{{item.id}}">
+                <input type="hidden" name="title" value="{{item.title}}">
+                <input type="hidden" name="release_date" value="{{item.releaseDate}}">
+                {% if item.runtimeStr %}
+                  <input type="hidden" name="duration" value="{{item.runtimeStr}}">
+                {% endif %}
+                {% if item.plot %}
+                  <input type="hidden" name="description" value="{{item.plot}}">
+                {% endif %}
+                {% if item.imDbRating %}
+                  <input type="hidden" name="rating" value="{{item.imDbRating}}">
+                {% endif %}
+                {% if item.image %}
+                  <input type="hidden" name="image_cover" value="{{item.image}}">
+                {% endif %}
+                <input type="hidden" name="types" value="movieseries">
+                <input type="hidden" name="form_type" value="create_favorite">
+                <button type="submit" class="btn btn-success btn-block mt-4" title="Favorite">
+                  <i class="far fa-star fa-sm"></i> Add to my favorites
+                </button>
+              </form>
+            {% endif %}
+          </div>
+          <ul class="list-group list-group-flush" id="items-card-list">
+            {% if item.directors %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Director:</b> {{item.directors}}
+              </li>
+            {% endif %}
+            {% if item.tvSeriesInfo.creators %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Creator:</b> {{item.tvSeriesInfo.creators}}
+              </li>
+            {% endif %}
+            {% if item.writers %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Writer:</b> {{item.writers}}
+              </li>
+            {% endif %}
+            {% if item.runtimeStr %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Duration:</b> {{item.runtimeStr}}
+              </li>
+            {% endif %}
+            {% if item.languages %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Language:</b> {{item.languages}}
+              </li>
+            {% endif %}
+            {% if item.countries %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Country:</b> {{item.countries}}
+              </li>
+            {% endif %}
+            {% if item.tvSeriesInfo.seasons %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Season:</b>  {{item.tvSeriesInfo.seasons|count_seasons}}
+              </li>
+            {% endif %}
+            {% if item.tvSeriesInfo.yearEnd %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Year end:</b> {{item.tvSeriesInfo.yearEnd}}
+              </li>
+            {% endif %}
+            {% if item.companies %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Company:</b> {{item.companies}}
+              </li>
+            {% endif %}
+            {% if item.contentRating %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Content Rating:</b> {{item.contentRating}}
+              </li>
+            {% endif %}
+            {% if item.imDbRating %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Rating:</b> {{item.imDbRating}}
+              </li>
+            {% endif %}
+            {% if item.awards %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Awards:</b> {{item.awards}}
+              </li>
+            {% endif %}
+          </ul>
+          <div class="card-footer text-muted text-center" id="items-card-footer"
+          style="color: #3B1A4E;">
+            {{item.releaseDate}}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% elif 'games' in data %}
+  {% for item in data.games %}
+    {% if item.id and item.name and item.first_release_date %}
+      <div class="col-lg-auto" id="items-card-col">
+        <div class="card shadow-sm" id="collapse_games"
+        style="color: #3B1A4E; border-color: #BC96E6;">
+          {% if item.cover.url %}
+            <img src="{{item.cover.url}}" class="card-img-top">
+          {% endif %}
+          <div class="card-body text-center" id="items-card-body">
+            <h4 class="card-title" id="items-card-title">{{item.name}}</h4>
+            {% if request.user.is_authenticated %}
+              <form action="{% url 'ui:results' 'games' item.id %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="uuid" value="{{item.id}}">
+                <input type="hidden" name="title" value="{{item.name}}">
+                <input type="hidden" name="release_date"
+                value="{{item.first_release_date|human_timestamp_date}}">
+                {% if item.summary %}
+                  <input type="hidden" name="description" value="{{item.summary}}">
+                {% endif %}
+                {% if item.total_rating %}
+                  <input type="hidden" name="rating" value="{{item.total_rating|floatformat}}">
+                {% endif %}
+                {% if item.cover.url %}
+                  <input type="hidden" name="image_cover" value="{{item.cover.url}}">
+                {% endif %}
+                <input type="hidden" name="types" value="games">
+                <input type="hidden" name="form_type" value="create_favorite">
+                <button type="submit" class="btn btn-success btn-block mt-4" title="Favorite">
+                  <i class="far fa-star fa-sm"></i> Add to my favorites
+                </button>
+              </form>
+            {% endif %}
+          </div>
+          {% if item.total_rating %}
+            <ul class="list-group list-group-flush" id="items-card-list">
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Rating:</b> {{item.total_rating|floatformat}}
+              </li>
+            </ul>
+          {% endif %}
+          <div class="card-footer text-muted text-center" id="items-card-footer"
+          style="color: #3B1A4E;">
+            {{item.first_release_date|human_timestamp_date}}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% elif 'music' in data %}
+  {% if data.music.id and data.music.name and data.music.album.release_date %}
+    <div class="col-lg-auto" id="items-card-col">
+      <div class="card shadow-sm" id="collapse_music"
+      style="color: #3B1A4E; border-color: #BC96E6;">
+        {% if data.music.album.images.1.url %}
+          <img src="{{data.music.album.images.1.url}}" class="card-img-top">
+        {% endif %}
+        <div class="card-body text-center" id="items-card-body">
+          <h4 class="card-title" id="items-card-title">{{data.music.name}}</h4>
+          {% if request.user.is_authenticated %}
+            <form action="{% url 'ui:results' 'music' data.music.album.id %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="uuid" value="{{data.music.id}}">
+              <input type="hidden" name="title" value="{{data.music.name}}">
+              <input type="hidden" name="release_date" value="{{data.music.album.release_date}}">
+              {% if data.music.duration_ms %}
+                <input type="hidden" name="duration" value="{{data.music.duration_ms|human_milliseconds}}">
+              {% endif %}
+              {% if data.music.album.images.1.url %}
+                <input type="hidden" name="image_cover" value="{{data.music.album.images.1.url}}">
+              {% endif %}
+              <input type="hidden" name="types" value="music">
+              <input type="hidden" name="form_type" value="create_favorite">
+              <button type="submit" class="btn btn-success btn-block mt-4" title="Favorite">
+                <i class="far fa-star fa-sm"></i> Add to my favorites
+              </button>
+            </form>
+          {% endif %}
+        </div>
+        <ul class="list-group list-group-flush" id="items-card-list">
+          {% if data.music.artists %}
+            <li class="list-group-item" id="items-card-list-group">
+              <b>Artist:</b> {{data.music.artists|add_comma}}
+            </li>
+          {% endif %}
+          {% if data.music.duration_ms %}
+            <li class="list-group-item" id="items-card-list-group">
+              <b>Duration:</b> {{data.music.duration_ms|human_milliseconds}}
+            </li>
+          {% endif %}
+          {% if data.music.popularity %}
+            <li class="list-group-item" id="items-card-list-group">
+              <b>Rating:</b> {{data.music.popularity}}
+            </li>
+          {% endif %}
+          {% if data.music.explicit %}
+            <li class="list-group-item" id="items-card-list-group">
+              <b>Explicit:</b> {{data.music.explicit}}
+            </li>
+          {% endif %}
+          {% if data.music.external_urls.spotify %}
+            <li class="list-group-item" id="items-card-list-group">
+              <b>Song:</b> <a href="{{data.music.external_urls.spotify}}" class="btn btn-link">
+                <i class="fab fa-spotify fa-sm"></i> Listen on spotify
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+        <div class="card-footer text-muted text-center" id="items-card-footer"
+        style="color: #3B1A4E;">
+          {{data.music.album.release_date}}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

@@ -1,0 +1,11 @@
+html * {
+    font-family: 'Overpass', sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+#linkedin-icon:hover, #github-icon:hover, #eye-icon:hover {
+    opacity: 0.5;
+}

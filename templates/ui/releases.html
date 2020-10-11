@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>{{title}}</title>
+{% endblock %}
+
+{% block content %}
+  {% include 'ui/search_bars/search_releases.html' %}
+  {% if data %}
+    {% include 'ui/items/items_releases.html' %}
+  {% else %}
+    {% include 'ui/items/items_coming_soon.html' %}
+  {% endif %}
+  {% include 'ui/introductions/releases_introduction.html' %}
+{% endblock %}

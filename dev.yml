@@ -1,0 +1,102 @@
+version: '3'
+
+services:
+  web:
+    container_name: web
+    build:
+        context: .
+        dockerfile: compose/Dockerfile.dev
+    depends_on:
+        - db
+    networks:
+        - network
+    restart: always
+    working_dir: /usr/src/backproject
+    entrypoint: sh entrypoints/web.sh
+    ports:
+        - '8000:8000'
+    expose:
+        - '8000'
+    volumes:
+        - .:/usr/src/backproject
+
+  flower:
+    container_name: flower
+    image: backproject_web
+    depends_on:
+        - celery
+    networks:
+        - network
+    restart: always
+    environment:
+      CELERY_FLOWER_USER: ${CELERY_FLOWER_USER}
+      CELERY_FLOWER_PASSWORD: ${CELERY_FLOWER_PASSWORD}
+    working_dir: /usr/src/backproject
+    entrypoint: sh entrypoints/flower.sh
+    ports:
+        - '5555:5555'
+    expose:
+        - '5555'
+    volumes:
+        - .:/usr/src/backproject
+
+  beat:
+    container_name: beat
+    image: backproject_web
+    depends_on:
+        - celery
+    networks:
+        - network
+    restart: always
+    working_dir: /usr/src/backproject
+    entrypoint: sh entrypoints/beat.sh
+    expose:
+        - '5555'
+    volumes:
+        - .:/usr/src/backproject
+
+  celery:
+    container_name: celery
+    image: backproject_web
+    depends_on:
+        - web
+        - rabbitmq
+    networks:
+        - network
+    restart: always
+    working_dir: /usr/src/backproject
+    entrypoint: sh entrypoints/celery.sh
+    expose:
+        - '5555'
+    volumes:
+        - .:/usr/src/backproject
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.7.27-alpine
+    networks:
+        - network
+    restart: always
+    expose:
+      - '5555'
+
+  db:
+    container_name: db
+    image: yobasystems/alpine-mariadb
+    networks:
+        - network
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+    expose:
+        - '3306'
+    volumes:
+        - ./models/data:/var/lib/mysql
+        - ./models/data/logs:/var/log/mysql
+
+networks:
+  network:
+    driver: bridge

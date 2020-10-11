@@ -1,0 +1,65 @@
+{% extends 'ui/items/items.html' %}
+
+{% block music_items %}
+  {% for item in data.music.playlists.items %}
+    {% if item.id and item.name and date %}
+      <div class="col-sm-3 my-1" id="items-card-col">
+        <div class="card shadow-sm multi-collapse" id="items-card"
+        style="color: #3B1A4E; border-color: #BC96E6;">
+          {% if item.images.0.url %}
+            <img src="{{item.images.0.url}}" class="card-img-top">
+          {% endif %}
+          <div class="card-body" id="items-card-body">
+            <h4 class="card-title" id="items-card-title">{{item.name}}</h4>
+            {% if item.description %}
+              <p class="card-text" id="items-card-text">{{item.description|truncatewords:50}}</p>
+            {% endif %}
+            <a href="{% url 'ui:results' 'music' item.id %}" class="btn btn-info btn-block">
+              <i class="fas fa-external-link-alt fa-sm"></i> Show more...
+            </a>
+          </div>
+          <ul class="list-group list-group-flush" id="items-card-list">
+            {% if item.tracks.total %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Tracks:</b> {{item.tracks.total}}
+              </li>
+            {% endif %}
+            {% if item.owner.external_urls.spotify %}
+              <li class="list-group-item" id="items-card-list-group">
+                <b>Song:</b> <a href="{{item.owner.external_urls.spotify}}" class="btn btn-link">
+                  <i class="fab fa-spotify fa-sm"></i> Listen on spotify
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+          <div class="card-footer text-muted text-center" id="items-card-footer"
+          style="color: #3B1A4E;">
+            {% if request.user.is_authenticated %}
+              <form action="{% url 'ui:releases' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="uuid" value="{{item.id}}">
+                <input type="hidden" name="title" value="{{item.name}}">
+                <input type="hidden" name="release_date" value="{{date}}">
+                {% if item.description %}
+                  <input type="hidden" name="description" value="{{item.description}}">
+                {% endif %}
+                {% if item.tracks.total %}
+                  <input type="hidden" name="duration" value="{{item.tracks.total}}">
+                {% endif %}
+                {% if item.images.0.url %}
+                  <input type="hidden" name="image_cover" value="{{item.images.0.url}}">
+                {% endif %}
+                <input type="hidden" name="types" value="music">
+                <input type="hidden" name="form_type" value="create_favorite">
+                <button type="submit" class="bg-transparent border-0" title="Favorite">
+                  <i class="far fa-star fa-sm" style="color: #AE759F;" id="star-icon"></i>
+                </button>
+              </form>
+            {% endif %}
+            {{date}}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,10 @@
+@media (min-width: 1024px) {
+    #documentation-nav-row-1 {
+        min-height: 100vh;
+        position: fixed;
+    }
+}
+
+.nav-pills .nav-link.active {
+    background-color: #55286F;
+}

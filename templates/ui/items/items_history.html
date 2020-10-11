@@ -1,0 +1,86 @@
+{% if not histories %}
+  <div class="container py-5" id="items-history-container-1">
+    <div class="row" id="items-history-row-1">
+      <div class="col-lg-12 text-center" id="items-history-1">
+        <h5 style="color: #3B1A4E;"><i class="far fa-folder-open fa-sm"></i> Not history yet</h5>
+      </div>
+    </div>
+  </div>
+{% else %}
+  {% for history in histories %}
+    <div class="col-sm-3" id="items-history-col-1">
+      <div class="card border-primary mb-3 multi-collapse" style="max-width: 18rem;">
+        <div class="card-header" style="color: #3B1A4E;">
+          {% if history.types == 'search_all' %}
+            Search all
+          {% elif history.types == 'coming_soon' %}
+            Coming soon
+          {% else %}
+            {{history.types|capfirst}}
+          {% endif %}
+        </div>
+        <div class="card-body text-primary">
+          {% if history.service == 'movieseries' %}
+            <h5 class="card-title">Movies and Series</h5>
+          {% else %}
+            <h5 class="card-title">{{history.service|capfirst}}</h5>
+          {% endif %}
+          {% if history.search %}
+          <p class="card-text">{{history.search}}</p>
+          {% endif %}
+          {% if history.types == 'search_all' %}
+            <form action="{% url 'ui:index' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="service" value="{{history.service}}">
+              <input type="hidden" name="types" value="{{history.types}}">
+              {% if history.search %}
+                <input type="hidden" name="search" value="{{history.search}}">
+              {% endif %}
+              <input type="hidden" name="form_type" value="search_all">
+              <button type="submit" class="btn btn-primary btn-block mb-2">
+                <i class="fas fa-search-plus fa-sm"></i> Search again
+              </button>
+            </form>
+          {% elif history.types == 'date' %}
+            <form action="{% url 'ui:releases' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="service" value="{{history.service}}">
+              <input type="hidden" name="types" value="{{history.types}}">
+              {% if history.year %}
+                <input type="hidden" name="year" value="{{history.year}}">
+              {% endif %}
+              {% if history.month %}
+                <input type="hidden" name="month" value="{{history.month}}">
+              {% endif %}
+              <input type="hidden" name="form_type" value="search_date">
+              <button type="submit" class="btn btn-primary btn-block mb-2">
+                <i class="fas fa-search-plus fa-sm"></i> Search again
+              </button>
+            </form>
+          {% endif %}
+          <form action="{% url 'ui:history' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="uuid" value="{{history.pk}}">
+            <input type="hidden" name="form_type" value="delete">
+            <button type="submit" class="btn btn-danger btn-block">
+              <i class="fas fa-trash-alt fa-sm"></i> Delete
+            </button>
+          </form>
+        </div>
+        {% if history.year and history.month %}
+          <div class="card-footer text-muted text-center">
+            {{history.year}}-{{history.month}}
+          </div>
+        {% elif history.year %}
+          <div class="card-footer text-muted text-center">
+            {{history.year}}
+          </div>
+        {% elif history.month %}
+          <div class="card-footer text-muted text-center">
+            {{history.month}}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}

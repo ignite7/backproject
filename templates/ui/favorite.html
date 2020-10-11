@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>{{title}}</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container py-5" id="favorite-container-1">
+    <div class="row" id="favorite-row-1">
+      <div class="col-lg-12 text-center" id="favorite-col-1">
+        <h3 id="main-text-color" style="color: #3B1A4E;">
+          <i class="fas fa-star fa-sm"></i> Here are all your favorites.
+        </h3>
+        <h5 style="color: #3B1A4E;">
+          If you want to search again a favorite item or delete it if you don't want to see it
+          anymore.
+        </h5>
+      </div>
+    </div>
+  </div>
+  <div class="container pt-5" id="favorite-container-2">
+    <div class="row" id="favorite-row-2">
+      <div class="col-lg-12" id="favorite-col-2">
+        <p>
+          <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+          data-target=".multi-collapse" aria-expanded="false">
+            My Favorites
+          </button>
+          <button class="btn btn-danger my-1" type="button" aria-expanded="false"
+          data-toggle="modal" data-target="#modal-delete-all-favorites">
+          <i class="fas fa-trash-alt fa-sm"></i> Detele all
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container" id="favorite-container-3">
+    <div class="row" id="favorite-row-3">
+      <div class="col-lg-12" id="favorite-col-3">
+        <div class="row" id="favorite-row-4">
+          {% include 'ui/items/items_favorite.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'pagination.html' %}
+  <div class="py-5"></div>
+
+  <!-- Modal delete favorite -->
+  <form action="{% url 'ui:favorites' %}" method="POST">
+    {% csrf_token %}
+    <div class="modal fade" id="modal-delete-all-favorites" tabindex="-1"
+    aria-labelledby="modal-delete-all-favorites-label" aria-hidden="true" style="color: #3B1A4E;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-delete-all-Favorites">
+              <i class="fas fa-trash-alt fa-sm"></i> Delete my favorites
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h6 class="text-center pt-1 pb-3 ">
+              <b>Important,</b> this action can not be recovery later.
+            </h6>
+            <div class="form-group">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Authorization</div>
+                </div>
+                <input type="password" class="form-control" name="authorization" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Secret</div>
+                </div>
+                <input type="password" class="form-control" name="secret" required>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" name="form_type" value="delete_all">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-danger">Delete my favorites</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,38 @@
+# ENVIROMENTS
+.env
+.venv/*
+.pytest_cache/*
+back/.env
+back/environ.py
+
+# CACHE
+ui/__pycache__/*
+ui/forms/__pycache__/*
+ui/tasks/__pycache__/*
+ui/views/__pycache__/*
+ui/templatetags/__pycache__/*
+back/__pycache__/*
+models/__pycache__/*
+api/auths/__pycache__/*
+api/services/__pycache__/*
+tests/__pycache__/*
+tests/services/__pycache__/*
+tests/auths/__pycache__/*
+
+# MIGRATIONS
+models/migrations/*
+auths/migrations/*
+services/migrations/*
+
+# DATA
+back/data/*
+models/data/*
+
+# CELERY
+*.pid
+
+# PICTURES
+media/*
+
+# Keys
+*.pem

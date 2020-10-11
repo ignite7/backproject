@@ -1,0 +1,85 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}"/>
+<nav class="navbar navbar-expand-lg sticky-top navbar-custom shadow-lg"
+style="background-color: #55286F;">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'ui:index' %}">
+      <img src="{% static 'media/logo.png' %}" title="The Back Project">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+    aria-label="Toggle navigation" id="collapse-btn">
+      <span class="navbar-toggler-icon">
+        <i class="fas fa-bars" style="color: whitesmoke; font-size:28px;"></i>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" id="nav-item-hover">
+          <a class="nav-link active" href="{% url 'ui:index' %}" style="color: whitesmoke;">
+            <i class="fas fa-search fa-sm"></i> Search
+          </a>
+        </li>
+        <li class="nav-item" id="nav-item-hover">
+          <a class="nav-link" href="{% url 'ui:releases' %}" style="color: whitesmoke;">
+            <i class="far fa-clock fa-sm"></i> Releases
+          </a>
+        </li>
+        <li class="nav-item" id="nav-item-hover">
+          <a class="nav-link" href="{% url 'ui:documentation' %}" style="color: whitesmoke;">
+            <i class="far fa-bookmark fa-sm"></i> Docs
+          </a>
+        </li>
+        <li class="nav-item" id="nav-item-hover">
+          <a class="nav-link" href="{% url 'ui:contact' %}" style="color: whitesmoke;">
+            <i class="far fa-envelope fa-sm"></i> Contact
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          style="color: whitesmoke;">
+            <i class="far fa-user-circle fa-sm"></i> Account
+          </a>
+          <div class="dropdown-menu border-0" aria-labelledby="navbarDropdown"
+          style="background-color: #55286F;">
+            {% if request.user.is_authenticated %}
+              <a class="dropdown-item" href="{% url 'ui:account' %}"
+              style="text-align: center; color: whitesmoke; border-bottom: 1px solid whitesmoke;">
+                @{{ request.user.username }}
+              </a>
+              <a class="dropdown-item mt-2" href="{% url 'ui:favorites' %}" style="color: whitesmoke;">
+                <i class="far fa-star fa-sm"></i> Favorites
+              </a>
+              <a class="dropdown-item" href="{% url 'ui:history' %}" style="color: whitesmoke;">
+                <i class="fas fa-history fa-sm"></i> History
+              </a>
+              <a class="dropdown-item" href="{% url 'ui:account' %}" style="color: whitesmoke;">
+                <i class="fas fa-user-cog fa-sm"></i> Settings
+              </a>
+              <a class="dropdown-item" href="{% url 'ui:logout' %}" style="color: whitesmoke;">
+                <i class="fas fa-sign-out-alt fa-sm"></i> Logout
+              </a>
+            {% else %}
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-login"
+              style="color: whitesmoke;">
+                <i class="fas fa-sign-in-alt fa-sm"></i> Login
+              </a>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-signup"
+              style="color: whitesmoke;">
+                <i class="fas fa-user-plus fa-sm"></i> Signup
+              </a>
+            {% endif %}
+          </div>
+        </li>
+        <div class="vl"></div>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/ignite7/backproject"
+          style="color: whitesmoke;" id="github-icon">
+            <i class="fab fa-github fa-sm"></i> Github
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

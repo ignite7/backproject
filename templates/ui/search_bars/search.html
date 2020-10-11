@@ -1,0 +1,53 @@
+<form action="{% url 'ui:index' %}" method="POST">
+  {% csrf_token %}
+  <section class="search-banner py-2" id="search-banner">
+    <div class="container" id="search-container">
+      <div class="row" id="search-row-1">
+        <div class="col-lg-12 text-center py-5">
+          <h3 id="main-text-color" style="color: #3B1A4E;">
+            <i class="fab fa-searchengin fa-sm"></i> Search between movies, series, games and music.
+          </h3>
+        </div>
+      </div>
+      <div class="row" id="search-row-2">
+        <div class="col-lg-12" id="search-col">
+          <div class="card shadow-sm" id="main-card" style="border-color: #BC96E6;">
+            <div class="card-body" id="main-card-body">
+              <div class="row" id="search-row-3">
+                <div class="col-md-4" id="option-col-1">
+                  <div class="form-group my-2">
+                    <select class="form-control" id="services" name="service"
+                    style="border-color: #BC96E6;" required>
+                      <option selected>Choose a service...</option>
+                      <option value="movieseries">Movies</option>
+                      <option value="movieseries">Series</option>
+                      <option value="games">Games</option>
+                      <option value="music">Music</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4" id="bar-search-col-2">
+                  <div class="my-2">
+                    <input class="form-control form-control-md form-control-borderless"
+                    type="search" name="search" placeholder="What are you looking for..."
+                    style="border-color: #BC96E6;" required>
+                  </div>
+                </div>
+                <div class="col-md-4" id="submit-col-3">
+                  <div class="my-2">
+                    <input type="hidden" name="types" value="search_all">
+                    <input type="hidden" name="form_type" value="search_all">
+                    <button class="btn btn-success btn-block" type="submit">
+                      Search <i class="fas fa-search fa-sm"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+</form>

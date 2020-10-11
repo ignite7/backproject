@@ -1,0 +1,258 @@
+{% load time_tags %}
+{% if 'movieseries' in data %}
+  {% for item in data.movieseries %}
+    <div class="container" id="items-result-col-rigth-container-1">
+      <div class="row" id="items-result-col-rigth-row-1">
+        <div class="col-lg-12" id="items-result-col-rigth-col-1">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#information"
+              role="tab" aria-controls="information" aria-selected="true">Information</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="trailer-tab" data-toggle="tab" href="#trailer"
+              role="tab" aria-controls="trailer" aria-selected="false">Trailer</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="information" role="tabpanel"
+            aria-labelledby="information-tab">
+              <div class="container py-3">
+                {% if item.plot %}
+                  <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                    data-target=".multi-collapse-plot" aria-expanded="false">
+                      Plot
+                    </button>
+                  </p>
+                  <p class="multi-collapse-plot" style="color: #3B1A4E;">{{item.plot}}</p>
+                {% endif %}
+                {% if item.actorList %}
+                  <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                    data-target=".multi-collapse-actors" aria-expanded="false">
+                      Actors
+                    </button>
+                  </p>
+                  {% for actor in item.actorList %}
+                    <div class="media multi-collapse-actors">
+                      <img src="{{actor.image}}" width="125" height="125"
+                      class="align-self-start rounded py-2 px-2">
+                      <div class="media-body">
+                        <h5 class="py-2 px-2" style="color: #3B1A4E;">
+                          {{actor.name}} as {{actor.asCharacter}}
+                        </h5>
+                      </div>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+                {% if item.genreList %}
+                  <p>
+                    <button class="btn btn-primary my-3" type="button" data-toggle="collapse"
+                    data-target=".multi-collapse-genreList" aria-expanded="false">
+                      Genres
+                    </button>
+                  </p>
+                  {% for genre in item.genreList %}
+                    <ul class="multi-collapse-genreList" style="color: #3B1A4E;">
+                      <li>{{genre.value}}</li>
+                    </ul>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
+              <div class="container text-center py-3">
+                {% if item.trailer %}
+                  <p style="color: #3B1A4E; text-align: left;">{{item.trailer.videoDescription}}</p>
+                  <iframe width="560" height="315" src="{{item.trailer.linkEmbed}}" frameborder="0"
+                  allowfullscreen></iframe>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% elif 'games' in data %}
+  {% for item in data.games %}
+    <div class="container" id="items-result-col-rigth-container-2">
+      <div class="row" id="items-result-col-rigth-row-2">
+        <div class="col-lg-12" id="items-result-col-rigth-col-2">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#information"
+              role="tab" aria-controls="information" aria-selected="true">Information</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="image-tab" data-toggle="tab" href="#images"
+              role="tab" aria-controls="image" aria-selected="false">Images</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="trailer-tab" data-toggle="tab" href="#trailer"
+              role="tab" aria-controls="trailer" aria-selected="false">Trailer</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="external-links-tab" data-toggle="tab" href="#external-links"
+              role="tab" aria-controls="external-links" aria-selected="false">External links</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="information" role="tabpanel"
+            aria-labelledby="information-tab">
+              <div class="container py-3">
+                {% if item.summary %}
+                  <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                    data-target=".multi-collapse-summary" aria-expanded="false">
+                      Summary
+                    </button>
+                  </p>
+                  <p class="multi-collapse-summary" style="color: #3B1A4E;">{{item.summary}}</p>
+                {% endif %}
+                {% if item.genres %}
+                  <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                    data-target=".multi-collapse-genres" aria-expanded="false">
+                      Genres
+                    </button>
+                  </p>
+                  {% for genre in item.genres %}
+                    <ul class="multi-collapse-genres" style="color: #3B1A4E;">
+                      <li>{{genre.name}}</li>
+                    </ul>
+                  {% endfor %}
+                {% endif %}
+                {% if item.platforms %}
+                  <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                    data-target=".multi-collapse-platforms" aria-expanded="false">
+                      Platforms
+                    </button>
+                  </p>
+                  {% for platform in item.platforms %}
+                    <ul class="multi-collapse-platforms" style="color: #3B1A4E;">
+                      <li>{{platform.name}}</li>
+                    </ul>
+                  {% endfor %}
+                {% endif %}
+                {% if item.dlcs %}
+                  <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                    data-target=".multi-collapse-dlcs" aria-expanded="false">
+                      Dlcs
+                    </button>
+                  </p>
+                  {% for dlc in item.dlcs %}
+                    <ul class="multi-collapse-dlcs" style="color: #3B1A4E;">
+                      <li>{{dlc.name}}</li>
+                    </ul>
+                  {% endfor %}
+                {% endif %}
+                {% if item.age_ratings.0.synopsis %}
+                  <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                    data-target=".multi-collapse-age-rating" aria-expanded="false">
+                      Age rating
+                    </button>
+                  </p>
+                  {% for age_rating in item.age_ratings %}
+                    <p class="multi-collapse-age-rating" style="color: #3B1A4E;">
+                      {{age_rating.synopsis}}
+                    </p>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
+              <div class="container py-3 text-center">
+                {% if item.screenshots %}
+                  {% for image in item.screenshots %}
+                  <picture>
+                    <a href="{{image.url}}">
+                      <img src="{{image.url}}" class="img-fluid rounded mt-2 d-bloc">
+                    </a>
+                  </picture>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
+              <div class="container py-3 text-center">
+                {% if item.videos %}
+                  {% for video in item.videos %}
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video.video_id}}"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="tab-pane fade" id="external-links" role="tabpanel"
+            aria-labelledby="external-links-tab">
+              <div class="container py-3">
+                {% if item.websites %}
+                  {% for website in item.websites %}
+                    <ul>
+                      <li><a href="{{website.url}}" class="btn-link">{{website.url|name_url}}</a></li>
+                    </ul>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% elif 'music' in data %}
+<div class="container" id="items-result-col-rigth-container-2">
+  <div class="row" id="items-result-col-rigth-row-2">
+    <div class="col-lg-12" id="items-result-col-rigth-col-2">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="album-tab" data-toggle="tab" href="#album"
+          role="tab" aria-controls="album" aria-selected="true">Album info</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="album" role="tabpanel"
+        aria-labelledby="album-tab">
+          <div class="container py-3">
+            <ul style="color: #3B1A4E;">
+              {% if data.music.album.name %}
+                <li><b>Name:</b> {{data.music.album.name}}</li>
+              {% endif %}
+              {% if data.music.album.artists %}
+                <li><b>Artist:</b>
+                  {% for artist in data.music.album.artists %}
+                    <li style="text-indent: 20px;">
+                      <a href="{{artist.external_urls.spotify}}">
+                        {{artist.name}}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </li>
+              {% endif %}
+              {% if data.music.album.total_tracks %}
+                <li><b>Total tracks:</b> {{data.music.album.total_tracks}}</li>
+              {% endif %}
+              {% if data.music.album.external_urls %}
+                <li>
+                  <b>Album:</b> <a href="{{data.music.album.external_urls.spotify}}">
+                    <i class="fab fa-spotify fa-sm"></i> Listen on spotify
+                  </a>
+                </li>
+              {% endif %}
+              {% if data.music.album.release_date %}
+              <li><b>Release date:</b> {{data.music.album.release_date}}</li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

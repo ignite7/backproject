@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>{{title}}</title>
+{% endblock %}
+
+{% block css %}
+  {% load static %}
+  {{block.super}}
+  <link rel="stylesheet" href="{% static 'ui/css/documentation.css' %}">
+{% endblock %}
+
+{% block content %}
+  {% include 'ui/introductions/documentation_introduction.html' %}
+  <div class="container" id="documentation-container-1">
+    <div class="row" id="documentation-row-1">
+      <div class="col-lg-5 pb-3" id="documentation-col-1">
+        {% include 'ui/nav/documentation_nav.html' %}
+      </div>
+      <div class="col-lg-7" id="documentation-col-2" style="color: #48215F;">
+        {% include 'ui/endpoints/documentation_endpoints.html' %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

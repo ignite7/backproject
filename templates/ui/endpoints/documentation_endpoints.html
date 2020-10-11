@@ -1,0 +1,851 @@
+<h3>Authentication</h3>
+<hr>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-signup" aria-expanded="false">
+    Signup
+  </button>
+</p>
+<div class="multi-collapse-signup" id="signup">
+  <h6 class="pt-4" style="text-indent: 20px;"><b>Endpoint:</b> {% url 'auth:signup' %}</h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> POST</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;"><b>Authentication headers:</b> Not</h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Email address</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Username</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">First name</th>
+        <td>Not</td>
+      </tr>
+      <tr>
+        <th scope="row">Last name</th>
+        <td>Not</td>
+      </tr>
+      <tr>
+        <th scope="row">Phone</th>
+        <td>Not</td>
+      </tr>
+      <tr>
+        <th scope="row">Picture</th>
+        <td>Not</td>
+      </tr>
+      <tr>
+        <th scope="row">Password</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Password confirmation</th>
+        <td>Yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-email-confirmation" aria-expanded="false">
+    Email confirmation
+  </button>
+</p>
+<div class="multi-collapse-email-confirmation" id="email-confirmation">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'auth:email_confirmation' 'key' 'secret' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> PUT</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;"><b>Authentication headers:</b> Not</h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+        <th scope="col">Valid options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" style="text-align: center;" colspan="3">No need parameters</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-login" aria-expanded="false">
+    Login
+  </button>
+</p>
+<div class="multi-collapse-login" id="login">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'auth:login' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> POST</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;"><b>Authentication headers:</b> Not</h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Email address</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Password</th>
+        <td>Yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-logout" aria-expanded="false">
+    Logout
+  </button>
+</p>
+<div class="multi-collapse-logout" id="logout">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'auth:logout' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> DELETE</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;"><b>Authentication headers:</b> Yes</h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+        <th scope="col">Valid options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" style="text-align: center;" colspan="3">No need parameters</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-change-password" aria-expanded="false">
+    Change password
+  </button>
+</p>
+<div class="multi-collapse-change-password" id="change-password">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'auth:reset_password_create' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> POST</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;"><b>Authentication headers:</b> Not</h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Username</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Email address</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Email address confirmation</th>
+        <td>Yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-change-password-confirmation" aria-expanded="false">
+    Change password confirmation
+  </button>
+</p>
+<div class="multi-collapse-change-password-confirmation" id="change-password-confirmation">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'auth:reset_password_update' 'key' 'secret' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> PUT</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;"><b>Authentication headers:</b> Not</h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">New password</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">New password confirmation</th>
+        <td>Yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-retrieve-user" aria-expanded="false">
+    Retrieve user
+  </button>
+</p>
+<div class="multi-collapse-retrieve-user" id="retrieve-user">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'auth:account' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> GET</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;"><b>Authentication headers:</b> Yes</h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+        <th scope="col">Valid options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" style="text-align: center;" colspan="3">No need parameters</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-update-user" aria-expanded="false">
+    Update user
+  </button>
+</p>
+<div class="multi-collapse-update-user" id="update-user">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'auth:account' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> PATCH</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;"><b>Authentication headers:</b> Yes</h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+        <th scope="col">Field required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Authorization</th>
+        <td>Yes</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Secret</th>
+        <td>Yes</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Email</th>
+        <td>Not</td>
+        <td>Email confirmation</td>
+      </tr>
+      <tr>
+        <th scope="row">Username</th>
+        <td>Not</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">First name</th>
+        <td>Not</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Last name</th>
+        <td>Not</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Phone</th>
+        <td>Not</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Picture</th>
+        <td>Not</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Password</th>
+        <td>Not</td>
+        <td>Password confirmation</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-delete-user" aria-expanded="false">
+    Delete user
+  </button>
+</p>
+<div class="multi-collapse-delete-user" id="delete-user">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'auth:account' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> DELETE</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;"><b>Authentication headers:</b> Yes</h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Authorization</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Secret</th>
+        <td>Yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h3 class="pt-3">Searches</h3>
+<hr>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-uuid" aria-expanded="false">
+    Id
+  </button>
+</p>
+<div class="multi-collapse-uuid" id="uuid">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint for movies and series:</b> {% url 'services:movieseries' 'id' %}
+  </h6>
+  <h6 style="text-indent: 20px;">
+    <b>Endpoint for games:</b> {% url 'services:games' 'id' %}
+  </h6>
+  <h6 style="text-indent: 20px;">
+    <b>Endpoint for music:</b> {% url 'services:music' 'id' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> GET</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Yes</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;">
+    <b>Authentication headers:</b> Depends on <code>request limited</code>
+  </h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+        <th scope="col">Valid options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" style="text-align: center;" colspan="3">No need parameters</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-all" aria-expanded="false">
+    All
+  </button>
+</p>
+<div class="multi-collapse-all" id="all">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'services:search' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> POST</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Yes</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Yes</h6>
+  <h6 class="pb-4" style="text-indent: 20px;">
+    <b>Authentication headers:</b> Depends on <code>request limited</code>
+  </h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+        <th scope="col">Valid options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Service</th>
+        <td>Yes</td>
+        <td>movieseries, games, music</td>
+      </tr>
+      <tr>
+        <th scope="row">Types</th>
+        <td>Yes</td>
+        <td>search_all</td>
+      </tr>
+      <tr>
+        <th scope="row">Search</th>
+        <td>Yes</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-date" aria-expanded="false">
+    Date
+  </button>
+</p>
+<div class="multi-collapse-date" id="date">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'services:releases' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> POST</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Yes</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Yes</h6>
+  <h6 class="pb-4" style="text-indent: 20px;">
+    <b>Authentication headers:</b> Depends on <code>request limited</code>
+  </h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+        <th scope="col">Valid options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Service</th>
+        <td>Yes</td>
+        <td>movieseries, games, music</td>
+      </tr>
+      <tr>
+        <th scope="row">Yypes</th>
+        <td>Yes</td>
+        <td>date</td>
+      </tr>
+      <tr>
+        <th scope="row">Month</th>
+        <td>Yes</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Year</th>
+        <td>Yes</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-coming-soon" aria-expanded="false">
+    Coming soon
+  </button>
+</p>
+<div class="multi-collapse-coming-soon" id="coming-soon">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'services:releases' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> GET</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Yes</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;">
+    <b>Authentication headers:</b> Depends on <code>request limited</code>
+  </h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+        <th scope="col">Valid options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" style="text-align: center;" colspan="3">No need parameters</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h3 class="pt-3">History</h3>
+<hr>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-retrieve-history" aria-expanded="false">
+    Retrieve
+  </button>
+</p>
+<div class="multi-collapse-retrieve-history" id="retrieve-history">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'services:history_list_or_create_or_delete_all' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> GET</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Yes</h6>
+  <h6 class="pb-4" style="text-indent: 20px;">
+    <b>Authentication headers:</b> Yes
+  </h6>
+  <table class="table" style="color: #48215F; width: 50px;">
+    <thead>
+      <tr>
+        <th scope="col">Filtering parameters</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Username</th>
+      </tr>
+      <tr>
+        <th scope="row">Service</th>
+      </tr>
+      <tr>
+        <th scope="row">Types</th>
+      </tr>
+      <tr>
+        <th scope="row">Search</th>
+      </tr>
+      <tr>
+        <th scope="row">Month</th>
+      </tr>
+      <tr>
+        <th scope="row">Year</th>
+      </tr>
+      <tr>
+        <th scope="row">Created_at</th>
+      </tr>
+      <tr>
+        <th scope="row">Modified_at</th>
+      </tr>
+      <tr>
+        <th scope="row">Is_used</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-create-history" aria-expanded="false">
+    Create
+  </button>
+</p>
+<div class="multi-collapse-create-history" id="create-history">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'services:history_list_or_create_or_delete_all' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> POST</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;">
+    <b>Authentication headers:</b> Yes
+  </h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Service</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Types</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">search</th>
+        <td>Not</td>
+      </tr>
+      <tr>
+        <th scope="row">Month</th>
+        <td>Not</td>
+      </tr>
+      <tr>
+        <th scope="row">Year</th>
+        <td>Not</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-delete-history" aria-expanded="false">
+    Delete id
+  </button>
+</p>
+<div class="multi-collapse-delete-history" id="delete-history">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'services:history_delete' 'id' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> DELETE</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;">
+    <b>Authentication headers:</b> Yes
+  </h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+        <th scope="col">Valid options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" style="text-align: center;" colspan="3">No need parameters</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-delete-all-history" aria-expanded="false">
+    Delete all
+  </button>
+</p>
+<div class="multi-collapse-delete-all-history" id="delete-all-history">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'services:history_list_or_create_or_delete_all' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> DELETE</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;">
+    <b>Authentication headers:</b> Yes
+  </h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+        <th scope="col">Valid options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" style="text-align: center;" colspan="3">No need parameters</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h3 class="pt-3">Favorite</h3>
+<hr>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-retrieve-favorite" aria-expanded="false">
+    Retrieve
+  </button>
+</p>
+<div class="multi-collapse-retrieve-favorite" id="retrieve-favorite">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'services:favorite_list_or_delete_all' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> GET</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Yes</h6>
+  <h6 class="pb-4" style="text-indent: 20px;">
+    <b>Authentication headers:</b> Yes
+  </h6>
+  <table class="table" style="color: #48215F; width: 50px;">
+    <thead>
+      <tr>
+        <th scope="col">Filtering parameters</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Username</th>
+      </tr>
+      <tr>
+        <th scope="row">Types</th>
+      </tr>
+      <tr>
+        <th scope="row">Title</th>
+      </tr>
+      <tr>
+        <th scope="row">Release_date</th>
+      </tr>
+      <tr>
+        <th scope="row">Duration</th>
+      </tr>
+      <tr>
+        <th scope="row">Description</th>
+      </tr>
+      <tr>
+        <th scope="row">Rating</th>
+      </tr>
+      <tr>
+        <th scope="row">Created_at</th>
+      </tr>
+      <tr>
+        <th scope="row">Modified_at</th>
+      </tr>
+      <tr>
+        <th scope="row">Is_used</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-create-favorite" aria-expanded="false">
+    Create
+  </button>
+</p>
+<div class="multi-collapse-create-favorite" id="create-favorite">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'services:favorite_create_or_delete' 'id' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> POST</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;">
+    <b>Authentication headers:</b> Yes
+  </h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Types</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Title</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Release_date</th>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Duration</th>
+        <td>Not</td>
+      </tr>
+      <tr>
+        <th scope="row">Description</th>
+        <td>Not</td>
+      </tr>
+      <tr>
+        <th scope="row">Rating</th>
+        <td>Not</td>
+      </tr>
+      <tr>
+        <th scope="row">Image_cover</th>
+        <td>Not</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-delete-favorite" aria-expanded="false">
+    Delete id
+  </button>
+</p>
+<div class="multi-collapse-delete-favorite" id="delete-favorite">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'services:favorite_create_or_delete' 'id' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> DELETE</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;">
+    <b>Authentication headers:</b> Yes
+  </h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+        <th scope="col">Valid options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" style="text-align: center;" colspan="3">No need parameters</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  <button class="btn btn-primary my-1" type="button" data-toggle="collapse"
+  data-target=".multi-collapse-delete-all-favorite" aria-expanded="false">
+    Delete all
+  </button>
+</p>
+<div class="multi-collapse-delete-all-favorite" id="delete-all-favorite">
+  <h6 class="pt-4" style="text-indent: 20px;">
+    <b>Endpoint:</b> {% url 'services:favorite_list_or_delete_all' %}
+  </h6>
+  <h6 style="text-indent: 20px;"><b>Method:</b> DELETE</h6>
+  <h6 style="text-indent: 20px;"><b>Requests limited:</b> Not</h6>
+  <h6 style="text-indent: 20px;"><b>Accept url params:</b> Not</h6>
+  <h6 class="pb-4" style="text-indent: 20px;">
+    <b>Authentication headers:</b> Yes
+  </h6>
+  <table class="table" style="color: #48215F;">
+    <thead>
+      <tr>
+        <th scope="col">Parameter</th>
+        <th scope="col">Required</th>
+        <th scope="col">Valid options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" style="text-align: center;" colspan="3">No need parameters</th>
+      </tr>
+    </tbody>
+  </table>
+</div>

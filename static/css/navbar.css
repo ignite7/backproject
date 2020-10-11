@@ -1,0 +1,15 @@
+#nav-item-hover:hover {
+    opacity: 0.5;
+}
+
+.dropdown-item:hover {
+    background-color: transparent;
+    opacity: 0.5;
+}
+
+.vl {
+    margin-left: 5px;
+    margin-right: 5px;
+    border-left: 2px solid whitesmoke;
+    height: 30px;
+}

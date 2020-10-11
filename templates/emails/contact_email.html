@@ -1,0 +1,23 @@
+<div class="container" style="text-align: center;">
+  <div class="row">
+    <div class="col-lg-12">
+      <a href="{% url 'ui:index' %}">
+        <img src="{% static 'media/logo_white.png' %}" title="The Back Project">
+      </a>
+    </div>
+  </div>
+</div>
+<div class="container" style="text-align: center;">
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 style="color: #48215F;">New message from {{data.name}}</h3>
+      <ul style="text-align: left; color: #48215F;">
+        <li><b>Name:</b> {{data.name}}</li>
+        <li><b>Email:</b> {{data.email}}</li>
+        <li><b>Phone:</b> {{data.phone}}</li>
+        <li><b>Subject:</b> {{data.subject}}</li>
+        <li><b>Message:</b> {{data.message}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

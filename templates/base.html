@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+  <!-- Head -->
+  <head>
+    {% load bootstrap4 %}
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    {% block title %}
+    {% endblock %}
+
+    <!-- Css -->
+    {% block css %}
+      {% load static %}
+      {% bootstrap_css %}
+      <link rel="stylesheet" href="{% static 'css/base.css' %}">
+      <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;600;700;800;900&display=swap">
+    {% endblock %}
+  </head>
+
+  <!-- Body -->
+  <body>
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+
+    <!-- Messages -->
+    <div class="container pt-5" id="message-container">
+      <div class="row" id="message-row">
+        <div class="col-lg-12 text-center" id="message-col">
+          {% bootstrap_messages %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- Modal login -->
+    <form action="{% url 'ui:login' %}" method="POST" >
+      {% csrf_token %}
+      <div class="modal fade" id="modal-login" tabindex="-1"
+      aria-labelledby="modal-login-label" aria-hidden="true" style="color: #3B1A4E;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-login"><i class="fas fa-sign-in-alt fa-sm"></i> Login</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1" style="color: #3B1A4E;">Email address</label>
+                <input type="email" class="form-control" aria-describedby="emailHelp" name="email"
+                required>
+                <small id="emailHelp" class="form-text text-muted">
+                  We'll never share your email with anyone else.
+                </small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1" style="color: #3B1A4E;">Password</label>
+                <input type="password" class="form-control" name="password" required>
+              </div>
+              <a href="#" class="btn btn-link btn-block" data-toggle="modal"
+              data-target="#modal-reset-password" data-dismiss="modal">
+                Trouble logging in?
+              </a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success">Log in</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Modal signup -->
+    <form action="{% url 'ui:signup' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="modal fade" id="modal-signup" tabindex="-1"
+      aria-labelledby="modal-signup-label" aria-hidden="true" style="color: #3B1A4E;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-signup">
+                <i class="fas fa-user-plus fa-sm"></i> Signup
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label style="color: #3B1A4E;">Email address</label>
+                <input type="email" class="form-control" name="email" required>
+                <small id="emailHelp" class="form-text text-muted">
+                  We'll never share your email with anyone else.
+                </small>
+              </div>
+              <div class="form-group">
+                <label style="color: #3B1A4E;">Username</label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">@</div>
+                  </div>
+                  <input type="text" class="form-control" name="username" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label style="color: #3B1A4E;">First name</label>
+                    <input type="text" class="form-control" name="first_name">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label style="color: #3B1A4E;">Last name</label>
+                    <input type="text" class="form-control" name="last_name">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label style="color: #3B1A4E;">Phone</label>
+                    <input type="text" class="form-control" name="phone">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label style="color: #3B1A4E;">Picture</label>
+                    <input type="file" class="form-control-file" name="picture">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label style="color: #3B1A4E;">Password</label>
+                    <input type="password" class="form-control" name="password" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label style="color: #3B1A4E;">Password confirmation</label>
+                    <input type="password" class="form-control" name="password_confirmation" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success">Sign up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Modal reset password -->
+    <form action="{% url 'ui:reset_password' %}" method="POST" >
+      {% csrf_token %}
+      <div class="modal fade" id="modal-reset-password" tabindex="-1"
+      aria-labelledby="modal-reset-password-label" aria-hidden="true" style="color: #3B1A4E;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-reset-password">
+                <i class="fas fa-sign-in-alt fa-sm"></i> Reset password
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label style="color: #3B1A4E;">Username</label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">@</div>
+                  </div>
+                  <input type="text" class="form-control" name="username" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label style="color: #3B1A4E;">Email address</label>
+                    <input type="email" class="form-control" aria-describedby="emailHelp" name="email"
+                    required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label style="color: #3B1A4E;">Email address confirmation</label>
+                    <input type="email" class="form-control" aria-describedby="emailHelp"
+                    name="email_confirmation" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success">Reset password</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Footer -->
+    <div class="container-fluid rounded-top mt-5 py-2" id="base-footer-container"
+    style="background-color: #895FAB;">
+      <div class="row" id="base-footer-row-1" style="background-color: #895FAB;">
+        <div class="col-lg-12 text-center" id="base-footer-col"
+        style="color: whitesmoke; background-position: bottom; height: 200px;">
+          <footer id="footer-bar" class="py-5" style="background-color: #895FAB;">
+            <a href="https://www.linkedin.com/in/sergio-van-berkel/" id="linkedin-icon">
+                <i class="fab fa-linkedin fa-lg" style="color:whitesmoke;"></i>
+            </a>
+            <a href="https://github.com/ignite7/backproject" id="github-icon">
+                <i class="fab fa-github fa-lg" style="color:whitesmoke;"></i>
+            </a>
+            <br><small>Copyright {% now 'Y' %} &copy; <a href="{% url 'ui:index' %}"
+            style="color: whitesmoke;"id="copyright">
+            The back project
+            </a></small><br>
+            <small>Made with <i class="fas fa-heart fa-sm"></i> by Ignite</small>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    {% block scripts %}
+      <!-- Bootstrap -->
+      {% bootstrap_javascript jquery='full' %}
+
+      <!-- Font awesome -->
+      <script src="https://kit.fontawesome.com/1a7f4e257c.js" crossorigin="anonymous"></script>
+
+      <!-- Hide the separator in phone -->
+      <script>
+        $("#collapse-btn").click(function(){
+          $(".vl").hide();
+        })
+      </script>
+    {% endblock %}
+  </body>
+</html>
