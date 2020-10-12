@@ -1,6 +1,6 @@
 -r ./base.txt
 
-# Extra
+# Production
 gunicorn==20.0.4
 django-storages[boto3]==1.10.1
 whitenoise==5.2.0

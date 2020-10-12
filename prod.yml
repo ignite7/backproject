@@ -7,27 +7,27 @@ services:
         context: .
         dockerfile: compose/Dockerfile.prod
     depends_on:
-        - db
-        - redis
+      - db
+      - redis
     networks:
-        - network
+      - network
     restart: always
     working_dir: /usr/src/backproject
     entrypoint: sh entrypoints/web.sh
     ports:
-        - '8000:8000'
+      - '8000:8000'
     expose:
-        - '8000'
+      - '8000'
     volumes:
-        - .:/usr/src/backproject
+      - .:/usr/src/backproject
 
   flower:
     container_name: flower
     image: backproject_web
     depends_on:
-        - celery
+      - celery
     networks:
-        - network
+      - network
     restart: always
     environment:
       CELERY_FLOWER_USER: ${CELERY_FLOWER_USER}
@@ -35,11 +35,11 @@ services:
     working_dir: /usr/src/backproject
     entrypoint: sh entrypoints/flower.sh
     ports:
-        - '5555:5555'
+      - '5555:5555'
     expose:
-        - '5555'
+      - '5555'
     volumes:
-        - .:/usr/src/backproject
+      - .:/usr/src/backproject
 
   beat:
     container_name: beat
@@ -47,7 +47,7 @@ services:
     depends_on:
         - celery
     networks:
-        - network
+      - network
     restart: always
     working_dir: /usr/src/backproject
     entrypoint: sh entrypoints/beat.sh
@@ -63,7 +63,7 @@ services:
         - web
         - rabbitmq
     networks:
-        - network
+      - network
     restart: always
     working_dir: /usr/src/backproject
     entrypoint: sh entrypoints/celery.sh
@@ -80,7 +80,7 @@ services:
     depends_on:
       - web
     networks:
-        - network
+      - network
     restart: always
     environment:
       DOMAIN_NAME: ${DOMAIN_NAME}
@@ -94,12 +94,15 @@ services:
   redis:
     container_name: redis
     image: redis
+    network:
+      - network
+    restart: always
 
   rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:3.7.27-alpine
     networks:
-        - network
+      - network
     restart: always
     expose:
       - '5555'
