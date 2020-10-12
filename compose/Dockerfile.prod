@@ -14,4 +14,4 @@ RUN apk update \
     && apk add libffi-dev py-cffi \
     && apk add gettext \
     && pip install --upgrade pip \
-    && pip install -r requirements/dev.txt
+    && pip install -r requirements/prod.txt

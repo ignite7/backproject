@@ -28,6 +28,9 @@ services:
     networks:
         - network
     restart: always
+    environment:
+      CELERY_FLOWER_USER: ${CELERY_FLOWER_USER}
+      CELERY_FLOWER_PASSWORD: ${CELERY_FLOWER_PASSWORD}
     working_dir: /usr/src/backproject
     entrypoint: sh entrypoints/flower.sh
     ports:
@@ -77,6 +80,8 @@ services:
     networks:
         - network
     restart: always
+    environment:
+      - DOMAIN_NAME: ${DOMAIN_NAME}
     working_dir: /usr/src/backproject
     entrypoint: sh entrypoints/caddy.sh
     ports:
