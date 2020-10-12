@@ -22,7 +22,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 ALLOWED_HOSTS = [env('ALLOWED_HOSTS')]
-HOST = 'https://www.{}'.format(ALLOWED_HOSTS[0])
+HOST = 'https://{}'.format(ALLOWED_HOSTS[0])
 
 # Title
 TITLE = 'The Back Project | '
@@ -30,7 +30,6 @@ TITLE = 'The Back Project | '
 # Application definition
 DJANGO_APPS = [
     'django.contrib.admin',
-    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -66,7 +65,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.admindocs.middleware.XViewMiddleware'
+    'django.contrib.admindocs.middleware.XViewMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = env('ROOT_URLCONF')
@@ -106,7 +106,19 @@ DATABASES = {
     }
 }
 
-# Amazon
+# Cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': env('REDIS_URL'),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'IGNORE_EXCEPTIONS': True,
+        }
+    }
+}
+
+# AWS
 AWS_STORAGE_BUCKET_NAME = env('DJANGO_AWS_STORAGE_BUCKET_NAME')
 AWS_QUERYSTRING_AUTH = False
 _AWS_EXPIRY = 60 * 60 * 24 * 7
@@ -168,7 +180,10 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_ROOT = 'static'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+ROOT_DIR = environ.Path(__file__) - 3
+STATIC_ROOT = str(ROOT_DIR('staticfiles'))
+STATIC_URL = env('STATIC_URL')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, env('STATICFILES_DIRS')),)
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -176,6 +191,8 @@ STATICFILES_FINDERS = [
 ]
 
 # Session
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 3600
 CSRF_COOKIE_AGE = 3600
@@ -184,6 +201,10 @@ CSRF_FAILURE_VIEW = 'back.views.handler_csrf_failure'
 CSRF_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
+SECURE_HSTS_SECONDS = 60
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Configuration email backend
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -197,8 +218,8 @@ EMAIL_USE_TLS = True
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Media settings
-MEDIA_ROOT = os.path.join(BASE_DIR, env('MEDIA_ROOT'))
-MEDIA_URL = env('MEDIA_URL')
+#MEIA_ROOT = os.path.join(BASE_DIR, env('MEDIA_ROOT'))
+MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
 
 # Celery
 CELERY_BROKER_URL = env('CELERY_BROKER_URL')

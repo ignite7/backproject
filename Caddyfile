@@ -3,7 +3,7 @@ www.{$DOMAIN_NAME} {
 }
 
 {$DOMAIN_NAME} {
-    proxy / django:8000 {
+    proxy / web:8000 {
         header_upstream Host {host}
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwarded-Proto {scheme}
