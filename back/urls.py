@@ -48,11 +48,7 @@ urlpatterns = [
         )
     ),
 
-    # Textarea editor
-    path(
-        'tinymce/',
-        include('tinymce.urls')
-    )
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Handle request errors
