@@ -44,7 +44,6 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'bootstrap4',
     'crispy_forms',
-    'tinymce',
     'storages',
     'gunicorn'
 ]

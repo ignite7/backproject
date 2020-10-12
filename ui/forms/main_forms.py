@@ -22,9 +22,6 @@ from ui.tasks.main_tasks import send_contact_email
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
 
-# Textarea Editor
-from tinymce.widgets import TinyMCE
-
 # Utilities
 from requests import post
 
@@ -166,7 +163,7 @@ class ContactForm(forms.Form):
     )
 
     message = forms.CharField(
-        widget=TinyMCE()
+        widget=forms.Textarea(attrs={'placeholder': 'Message'})
     )
 
     def __init__(self, *args, **kwargs):

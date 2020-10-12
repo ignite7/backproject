@@ -4,7 +4,6 @@ djangorestframework==3.11.1
 django-filter==2.3.0
 django-bootstrap4==2.2.0
 django-crispy-forms==1.9.2
-django-tinymce==3.0.2
 django-environ==0.4.5
 
 # Tools
