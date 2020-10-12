@@ -81,7 +81,7 @@ services:
         - network
     restart: always
     environment:
-      - DOMAIN_NAME: ${DOMAIN_NAME}
+      DOMAIN_NAME: ${DOMAIN_NAME}
     working_dir: /usr/src/backproject
     entrypoint: sh entrypoints/caddy.sh
     ports:
