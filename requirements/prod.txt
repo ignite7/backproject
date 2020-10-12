@@ -2,8 +2,17 @@
 
 # Django recommended
 django-extensions==3.0.4
+markdown==3.2.2
+Pygments==2.6.1
 uritemplate==3.0.1
 
 # Extra
 gunicorn==20.0.4
 django-storages[boto3]==1.10.1
+
+# Testing
+ipdb==0.13.3
+pytest==6.0.1
+pytest-django==3.9.0
+flake8==3.8.3
+docutils==0.16
