@@ -35,48 +35,51 @@ class CheckRequestPerHour(BasePermission):
 
         clean_ip_addrs.delay()
 
-        try:
-            if request.user.is_authenticated or get_authentication(request).is_authenticated:
-                permissions = [
-                    IsAuthenticated(),
-                    CheckOwner(),
-                    CheckVerifiedEmail()
-                ]
-                execute_permissions = [
-                    permission.has_permission(request, view) for permission in permissions
-                ]
+        if request.user.is_authenticated or get_authentication(request).is_authenticated:
+            permissions = [
+                IsAuthenticated(),
+                CheckOwner(),
+                CheckVerifiedEmail()
+            ]
+            execute_permissions = [
+                permission.has_permission(request, view) for permission in permissions
+            ]
 
-                count_success_permissions = 0
+            count_success_permissions = 0
 
-                for check_permission in execute_permissions:
-                    if check_permission:
-                        count_success_permissions += 1
+            for check_permission in execute_permissions:
+                if check_permission:
+                    count_success_permissions += 1
 
-                if count_success_permissions != 3:
-                    return False
-
-                return True
-
-            ip_addrs = Restricts.objects.filter(
-                ip_remote_addr=request.META['REMOTE_ADDR']
-            )
-
-            if ip_addrs.exists():
-                for ip_addr in ip_addrs:
-                    ip_addr.requests += 1
-                    ip_addr.save()
-
-            else:
-                ip_addrs.create(
-                    ip_remote_addr=request.META['REMOTE_ADDR'],
-                    requests=1
-                )
-
-            for ip_addr in ip_addrs:
-                if ip_addr.requests > 3:
-                    return False
+            if count_success_permissions != 3:
+                return False
 
             return True
 
-        except (KeyError, TypeError):
+        try:
+            ip = request.META["HTTP_X_REAL_IP"]
+        except KeyError:
+            ip = request.META['REMOTE_ADDR']
+        else:
             return False
+
+        ip_addrs = Restricts.objects.filter(
+            ip_remote_addr=ip
+        )
+
+        if ip_addrs.exists():
+            for ip_addr in ip_addrs:
+                ip_addr.requests += 1
+                ip_addr.save()
+
+        else:
+            ip_addrs.create(
+                ip_remote_addr=ip,
+                requests=1
+            )
+
+        for ip_addr in ip_addrs:
+            if ip_addr.requests > 3:
+                return False
+
+        return True
