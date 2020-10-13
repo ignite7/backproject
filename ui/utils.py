@@ -27,13 +27,13 @@ def api(request, data):
         return post(url, data=data, headers=headers).json()
 
     elif data['types'] == 'date':
-        url = '{}/services/releases/'.format(HOST)
+        url = 'https://backproject.xyz/releases/'
         return post(url, data=data, headers=headers).json()
 
     elif data['types'] == 'coming_soon':
-        url = '{}/services/releases/'.format(HOST)
+        url = 'https://backproject.xyz/releases/'
         return get(url, headers=headers).json()
 
     elif data['types'] == 'uuid':
-        url = '{}/services/{}/{}/'.format(HOST, data['service'], data['uuid'])
+        url = 'https://backproject.xyz/services/{}/{}/'.format(data['service'], data['uuid'])
         return get(url, headers=headers)
