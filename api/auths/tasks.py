@@ -8,7 +8,6 @@ from rest_framework import status
 # Django
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
-from django.conf import global_settings
 
 # Celery
 from celery import shared_task
@@ -16,6 +15,7 @@ from celery.decorators import periodic_task
 
 # Models
 from models.models import Tokens
+from back.settings import HOST
 
 # Modules
 from api.services.commons import status_code
@@ -36,7 +36,7 @@ def send_email_confirmation(user, token):
     content = render_to_string('emails/email_verification.html', {
         'user': user,
         'token': token,
-        'host': global_settings.ALLOWED_HOSTS[0]
+        'host': HOST
     })
     message = EmailMultiAlternatives(
         subject=subject,
@@ -62,7 +62,7 @@ def send_reset_password(email, token):
     content = render_to_string('emails/reset_password.html', {
         'email': email,
         'token': token,
-        'host': global_settings.ALLOWED_HOSTS[0]
+        'host': HOST
     })
     message = EmailMultiAlternatives(
         subject=subject,
