@@ -23,7 +23,7 @@ def api(request, data):
         headers['Secret'] = request.session['token']['Secret']
 
     if data['types'] == 'search_all':
-        url = '{}/services/'.format(HOST)
+        url = 'https://backproject.xyz/services/'
         return post(url, data=data, headers=headers).json()
 
     elif data['types'] == 'date':
