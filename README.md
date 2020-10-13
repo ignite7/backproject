@@ -1,7 +1,7 @@
 # Backproject 💎
 
-This is an open source API project, the main idea is gather three services that nowadays people
-consume everyday as movies, series, games and music. For this was required to use external
+This is an open source API project, the main idea is to bring together three services that nowadays people
+consume every day as movies, series, games and music. For this was required to use external
 databases which are [**_IMDb_**](https://imdb-api.com/api), [**_IGDB_**](https://api-docs.igdb.com/)
 and [**_Spotify_**](https://developer.spotify.com/documentation/web-api/), you can see the
 [**_docs_**](https://backproject.xyz/documentation/) if you want to know more, and the last but not
