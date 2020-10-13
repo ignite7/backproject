@@ -180,7 +180,6 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = 'static'
 STATIC_URL = env('STATIC_URL')
 STATICFILES_FINDERS = [
@@ -217,7 +216,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Media settings
 MEIA_ROOT = os.path.join(BASE_DIR, env('MEDIA_ROOT'))
-MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
 
 # Celery
 CELERY_BROKER_URL = env('CELERY_BROKER_URL')
