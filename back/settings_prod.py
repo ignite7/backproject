@@ -30,6 +30,7 @@ TITLE = 'The Back Project | '
 # Application definition
 DJANGO_APPS = [
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -181,10 +182,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-ROOT_DIR = environ.Path(__file__) - 3
-STATIC_ROOT = str(ROOT_DIR('staticfiles'))
+STATIC_ROOT = 'static'
 STATIC_URL = env('STATIC_URL')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, env('STATICFILES_DIRS')),)
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -218,7 +217,7 @@ EMAIL_USE_TLS = True
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Media settings
-#MEIA_ROOT = os.path.join(BASE_DIR, env('MEDIA_ROOT'))
+MEIA_ROOT = os.path.join(BASE_DIR, env('MEDIA_ROOT'))
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
 
 # Celery
