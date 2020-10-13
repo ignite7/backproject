@@ -36,3 +36,9 @@ media/*
 
 # Keys
 *.pem
+
+# Static
+static/admin/*
+static/rest_framework/*
+static/staticfiles.json
+
