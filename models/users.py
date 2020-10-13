@@ -52,7 +52,7 @@ class Users(Commons, AbstractUser):
     )
 
     picture = models.ImageField(
-        upload_to='pictures/users/',
+        upload_to='media/pictures/users/',
         blank=True,
         null=True,
         help_text='Picture of the user.'
