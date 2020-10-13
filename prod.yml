@@ -81,7 +81,6 @@ services:
       - web
     networks:
       - network
-    restart: always
     environment:
       DOMAIN_NAME: ${DOMAIN_NAME}
     working_dir: /usr/src/backproject
@@ -94,15 +93,15 @@ services:
   redis:
     container_name: redis
     image: redis
-    network:
-      - network
+    networks:
+        - network
     restart: always
 
   rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:3.7.27-alpine
     networks:
-      - network
+        - network
     restart: always
     expose:
       - '5555'
