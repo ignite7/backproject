@@ -25,6 +25,8 @@ to run the project it takes two simple steps:
 
 ```
 cd backproject/
+mkdir -p back/data/ models/data/logs/ models/migrations/
+touch models/migrations/__init__.py
 sudo docker-compose -f dev.yml up
 ```
 
