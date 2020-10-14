@@ -18,7 +18,7 @@ from models.models import Users, Tokens
 
 # Modules
 from api.auths.utils import login_user
-from back.settings import HOST
+from back.settings import REAL_HOST
 
 # Crispy libraries
 from crispy_forms.helper import FormHelper
@@ -115,7 +115,7 @@ class SignupForm(forms.Form):
         """
 
         data = self.cleaned_data
-        url = '{}/auth/signup/'.format(HOST)
+        url = '{}/auth/signup/'.format(REAL_HOST)
         headers = {'Accept': 'application/json; version=v1'}
         response = post(url, data=data, headers=headers)
 
@@ -229,7 +229,7 @@ class ResetPasswordForm(forms.Form):
         """
 
         data = self.cleaned_data
-        url = '{}/auth/reset-password/'.format(HOST)
+        url = '{}/auth/reset-password/'.format(REAL_HOST)
         headers = {'Accept': 'application/json; version=v1'}
         response = post(url, data=data, headers=headers)
 
@@ -296,7 +296,7 @@ class ResetPasswordConfirmationForm(forms.Form):
         Reset the user password.
         """
 
-        url = '{}/auth/reset-password/{}/{}/'.format(HOST, kwargs['key'], kwargs['secret'])
+        url = '{}/auth/reset-password/{}/{}/'.format(REAL_HOST, kwargs['key'], kwargs['secret'])
         headers = {'Accept': 'application/json; version=v1'}
         response = put(url, data=self.cleaned_data, headers=headers)
 
@@ -325,7 +325,7 @@ class EmailConfirmationForm(forms.Form):
         Activate user email.
         """
 
-        url = '{}/auth/email-confirmation/{}/{}/'.format(HOST, kwargs['key'], kwargs['secret'])
+        url = '{}/auth/email-confirmation/{}/{}/'.format(REAL_HOST, kwargs['key'], kwargs['secret'])
         headers = {'Accept': 'application/json; version=v1'}
         response = put(url, headers=headers)
 
@@ -502,7 +502,7 @@ class AccountUpdateForm(forms.Form):
         Update user.
         """
 
-        url = '{}/auth/account/'.format(HOST)
+        url = '{}/auth/account/'.format(REAL_HOST)
         headers = {
             'Accept': 'application/json; version=v1',
             'Authorization': request.session['token']['Authorization'],
@@ -547,7 +547,7 @@ class AccountDeleteForm(forms.Form):
         Delete user.
         """
 
-        url = '{}/auth/account/'.format(HOST)
+        url = '{}/auth/account/'.format(REAL_HOST)
         headers = {
             'Accept': 'application/json; version=v1',
             'Authorization': request.session['token']['Authorization'],

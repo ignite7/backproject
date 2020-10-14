@@ -13,7 +13,7 @@ from django.contrib import messages
 
 # Models
 from models.models import Histories, Favorites
-from back.settings import HOST
+from back.settings import REAL_HOST
 
 # Tasks
 from ui.tasks.main_tasks import send_contact_email
@@ -112,7 +112,7 @@ class FavoriteForm(forms.ModelForm):
         """
 
         data = self.data
-        url = '{}/services/favorites/{}/'.format(HOST, data['uuid'])
+        url = '{}/services/favorites/{}/'.format(REAL_HOST, data['uuid'])
         headers = {
             'Accept': 'application/json; version=v1',
             'Authorization': request.session['token']['Authorization'],

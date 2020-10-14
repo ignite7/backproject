@@ -14,7 +14,7 @@ from celery import shared_task
 
 # Modules
 from api.services.commons import status_code
-from back.settings import HOST, EMAIL_HOST_USER
+from back.settings import REAL_HOST, EMAIL_HOST_USER
 
 
 @shared_task(max_retries=3)
@@ -26,7 +26,7 @@ def send_contact_email(data):
     subject = ' New contact email from {}, <Back.com>'.format(data['name'])
     content = render_to_string('emails/contact_email.html', {
         'data': data,
-        'host': HOST
+        'host': REAL_HOST
     })
     message = EmailMultiAlternatives(
         subject=subject,

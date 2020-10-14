@@ -10,7 +10,7 @@ from django import forms
 from django.contrib import messages
 
 # Modules
-from back.settings import HOST
+from back.settings import REAL_HOST
 
 # Utilities
 from requests import delete
@@ -45,7 +45,7 @@ class DeleteAllHistoryForm(forms.Form):
         Delete all history.
         """
 
-        url = '{}/services/history/'.format(HOST)
+        url = '{}/services/history/'.format(REAL_HOST)
         headers = {
             'Accept': 'application/json; version=v1',
             'Authorization': request.session['token']['Authorization'],
@@ -84,7 +84,7 @@ class DeleteHistoryForm(forms.Form):
         """
 
         data = self.cleaned_data
-        url = '{}/services/history/{}/'.format(HOST, data['uuid'])
+        url = '{}/services/history/{}/'.format(REAL_HOST, data['uuid'])
         headers = {
             'Accept': 'application/json; version=v1',
             'Authorization': request.session['token']['Authorization'],
@@ -129,7 +129,7 @@ class DeleteAllFavoriteForm(forms.Form):
         Delete all favorites.
         """
 
-        url = '{}/services/favorites/'.format(HOST)
+        url = '{}/services/favorites/'.format(REAL_HOST)
         headers = {
             'Accept': 'application/json; version=v1',
             'Authorization': request.session['token']['Authorization'],
@@ -168,7 +168,7 @@ class DeleteFavoriteForm(forms.Form):
         """
 
         data = self.cleaned_data
-        url = '{}/services/favorites/{}/'.format(HOST, data['uuid'])
+        url = '{}/services/favorites/{}/'.format(REAL_HOST, data['uuid'])
         headers = {
             'Accept': 'application/json; version=v1',
             'Authorization': request.session['token']['Authorization'],

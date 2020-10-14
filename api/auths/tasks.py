@@ -15,7 +15,7 @@ from celery.decorators import periodic_task
 
 # Models
 from models.models import Tokens
-from back.settings import HOST
+from back.settings import REAL_HOST
 
 # Modules
 from api.services.commons import status_code
@@ -36,7 +36,7 @@ def send_email_confirmation(user, token):
     content = render_to_string('emails/email_verification.html', {
         'user': user,
         'token': token,
-        'host': HOST
+        'host': REAL_HOST
     })
     message = EmailMultiAlternatives(
         subject=subject,
@@ -62,7 +62,7 @@ def send_reset_password(email, token):
     content = render_to_string('emails/reset_password.html', {
         'email': email,
         'token': token,
-        'host': HOST
+        'host': REAL_HOST
     })
     message = EmailMultiAlternatives(
         subject=subject,

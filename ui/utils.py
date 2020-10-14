@@ -3,7 +3,7 @@ Utils UI.
 """
 
 # Modules
-from back.settings import HOST
+from back.settings import REAL_HOST
 
 # Utilities
 from requests import get, post
@@ -23,17 +23,17 @@ def api(request, data):
         headers['Secret'] = request.session['token']['Secret']
 
     if data['types'] == 'search_all':
-        url = 'https://backproject.xyz/services/'
+        url = '{}/services/'.format(REAL_HOST)
         return post(url, data=data, headers=headers).json()
 
     elif data['types'] == 'date':
-        url = 'https://backproject.xyz/releases/'
+        url = '{}/releases/'.format(REAL_HOST)
         return post(url, data=data, headers=headers).json()
 
     elif data['types'] == 'coming_soon':
-        url = 'https://backproject.xyz/releases/'
+        url = '{}/releases/'.format(REAL_HOST)
         return get(url, headers=headers).json()
 
     elif data['types'] == 'uuid':
-        url = 'https://backproject.xyz/services/{}/{}/'.format(data['service'], data['uuid'])
+        url = '{}/services/{}/{}/'.format(REAL_HOST, data['service'], data['uuid'])
         return get(url, headers=headers)

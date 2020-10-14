@@ -2,7 +2,11 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import environ
 
+# Read the .env file
+env = environ.Env()
+environ.Env.read_env()
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'back.settings')
