@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backproject-deployment
+  labels:
+    app: backproject
+spec:
+  replicas: 3
+  selector:
+    macthLabels:
+      app: backproject
+    template:
+      metadata:
+          labels:
+            app: backproject
+      spec:
+        container:
+          - name: backproject
+            image: ignite27/backproject
+            ports:
+              - containerPort: 8000
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: backproject-service
+spec:
+  selector:
+    app: backproject
+  ports:
+    - protocol: HTTP
+      port: 80
+      targetPort: 8000
